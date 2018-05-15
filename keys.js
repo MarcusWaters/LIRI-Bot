@@ -1,4 +1,4 @@
-// require(".env").config();
+require(".env").config();
 console.log('this is loaded');
 
 exports.twitter = {
