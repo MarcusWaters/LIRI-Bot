@@ -1,8 +1,8 @@
-require(".env").config();
+require("dotenv").config();
 
 var keys = require("./keys.js")
 var twitter = require('twitter');
-var spotify = require('spotify');
+var spotify = require('node-spotify-api');
 
 var Spotify = require("node-spotify-api")
 
@@ -11,34 +11,47 @@ var spotify = new Spotify({
     secret: "ce05b0cfa7454b1481447467932197cd"
 })
 
-function getSpotify() {
-    spotify.search( {
-        type: "track",
-        query: "King of Alabama",
-
-    },
-    function(err, data) {
-        if (err) {
-            console.log("Error happened:" + err)
-            return
-        }
-        console.log('full data res ===>', data)
-        var normalized = []
-        var songs = data.tracks.items
-        for( var i = 0; i < songs.length; i++){
-            normalized.push({
-                "song name": songs[i].name
-            })
-        }
-        console.log('Normalized ==>', normalized)
+spotify.search({ type: 'track', query: 'Perfect' }, function(err, data) {
+    if (err) {
+      return console.log('Error occurred: ' + err);
     }
-    ) 
-}
+  
+  console.log(data); 
+  console.log(data.tracks.items[0]);
+  });
 
-getSpotify()
+  
 
 
-var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
+
+// function getSpotify() {
+//     spotify.search( {
+//         type: "track",
+//         query: "King of Alabama",
+
+//     },
+//     function(err, data) {
+//         if (err) {
+//             console.log("Error happened:" + err)
+//             return
+//         }
+//         console.log('full data res ===>', data)
+//         var normalized = []
+//         var songs = data.tracks.items
+//         for( var i = 0; i < songs.length; i++){
+//             normalized.push({
+//                 "song name": songs[i].name
+//             })
+//         }
+//         console.log('Normalized ==>', normalized)
+//     }
+//     ) 
+// }
+
+// getSpotify()
+
+
+// var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
 
 
 
